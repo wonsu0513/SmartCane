@@ -1,0 +1,28 @@
+--cpu Cortex-M4.fp
+"smartcane\startup_stm32f407xx.o"
+"smartcane\stm32f4xx_hal_uart.o"
+"smartcane\stm32f4xx_hal_flash_ex.o"
+"smartcane\stm32f4xx_hal.o"
+"smartcane\stm32f4xx_hal_rcc.o"
+"smartcane\stm32f4xx_hal_dma_ex.o"
+"smartcane\stm32f4xx_hal_tim.o"
+"smartcane\stm32f4xx_hal_gpio.o"
+"smartcane\stm32f4xx_hal_cortex.o"
+"smartcane\stm32f4xx_hal_dma.o"
+"smartcane\stm32f4xx_hal_pwr_ex.o"
+"smartcane\stm32f4xx_hal_rcc_ex.o"
+"smartcane\stm32f4xx_hal_pwr.o"
+"smartcane\stm32f4xx_hal_tim_ex.o"
+"smartcane\stm32f4xx_hal_flash_ramfunc.o"
+"smartcane\stm32f4xx_hal_flash.o"
+"smartcane\stm32f4xx_hal_adc_ex.o"
+"smartcane\stm32f4xx_hal_adc.o"
+"smartcane\main.o"
+"smartcane\stm32f4xx_hal_msp.o"
+"smartcane\stm32f4xx_it.o"
+"smartcane\system_stm32f4xx.o"
+"C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.1\CMSIS\Lib\ARM\arm_cortexM4lf_math.lib"
+--library_type=microlib --strict --scatter "SmartCane\SmartCane.sct"
+--diag_suppress=L6329 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "SmartCane.map" -o SmartCane\SmartCane.axf
