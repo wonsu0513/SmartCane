@@ -41,9 +41,9 @@
 
 /* USER CODE BEGIN Includes */
 #define ARM_MATH_CM4
-#define NPT 4096
-#define FFT_SIZE NPT/2
-#define FsTime 4000
+#define NPT  1024
+#define FFT_SIZE  NPT/2
+#define FsTime 8000
 
 #include "arm_math.h"
 #include "arm_const_structs.h"
@@ -69,7 +69,6 @@ uint32_t  adcIn1[NPT] = {0,};
 uint32_t  adcIn2[NPT] = {0,};
 
  float32_t Input1[NPT] = {0,};
-
  float32_t Input2[NPT] = {0,};
 
  float32_t Result_Output1[FFT_SIZE];
@@ -78,12 +77,21 @@ uint32_t  adcIn2[NPT] = {0,};
  float32_t Result_ANR[FFT_SIZE];
  
 	
-float32_t maxValue;				/* Max FFT value is stored here */
-uint32_t maxIndex;				/* Index in Output array where max value is */
+float32_t maxValue_1;				/* Max FFT value is stored here */
+uint32_t maxIndex_1;				/* Index in Output array where max value is */
+ 	
+float32_t maxValue_2;				/* Max FFT value is stored here */
+uint32_t maxIndex_2;				/* Index in Output array where max value is */
+ 
+ 
 uint16_t i;
 
+ 
+ 
+uint32_t Evaluation_Array[20] = {0,};
 
-
+uint16_t count = 0;
+uint32_t mode_Value = 0;
 
 /* USER CODE END PV */
 
@@ -108,53 +116,92 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)  //FFT 자리// 타이머
 	
 	if(htim -> Instance == TIM12)
 	{ 	
-		
-		 for(i = 0; i <NPT; i++)
+		 
+		 for(i = 0; i <NPT; i++) //배열타입 정렬
 		 {	
 				 Input1[(uint16_t)i] = (float32_t)(adcIn1[i]);			
-				 Input2[(uint16_t)i] = (float32_t)(adcIn2[i]);		
-				// Result_Input[(uint16_t)i] = (float32_t)(adcIn1[i]-adcIn2[i]);		
-		 }		
-		  
-				arm_cfft_f32(&arm_cfft_sR_f32_len2048, Input1, 0, 1);
-				arm_cmplx_mag_f32(Input1, Result_Output1, FFT_SIZE);		 
-				Result_Output1[0] = 0.0; //참고문헌 필요 ->어디서 본적있는데....제로 뭐시기인데...	-> zero padding  
-				arm_max_f32(Result_Output1, FFT_SIZE/2, &maxValue, &maxIndex);
-				printf("(1)    %d,%.1f ", maxIndex,maxValue); 
-		 	
-		    arm_cfft_f32(&arm_cfft_sR_f32_len2048, Input2, 0, 1);
-				arm_cmplx_mag_f32(Input2, Result_Output2, FFT_SIZE);		 
-				Result_Output2[0] = 0.0; //참고문헌 필요 ->어디서 본적있는데....제로 뭐시기인데...	-> zero padding  
-				arm_max_f32(Result_Output2, FFT_SIZE/2, &maxValue, &maxIndex);
-				printf("(2)   %d,%.1f\r\n", maxIndex,maxValue); 
-		 
+			   Input2[(uint16_t)i] = (float32_t)(adcIn2[i]);		
+		 }				 
 
-		 /*
-		 for(i = 0; i <NPT; i++)
+	
+		arm_cfft_f32(&arm_cfft_sR_f32_len512, Input1, 0, 1);
+		arm_cmplx_mag_f32(Input1, Result_Output1, FFT_SIZE);						
+		Result_Output1[0] = 0;//참고문헌 필요 -> zero padding  	 
+		 
+		arm_cfft_f32(&arm_cfft_sR_f32_len512, Input2, 0, 1);
+		arm_cmplx_mag_f32(Input2, Result_Output2, FFT_SIZE);		 
+		Result_Output2[0] = 0;//참고문헌 필요 -> zero padding  
+		 
+		   
+		 //
+ //   printf("ANR FFT\r\n"); 
+		 for(i = 0; i <FFT_SIZE/2; i++)
 		 {	
-			 if (Result_Output1[i]-Result_Output2[i] <0)
-				 Result_ANR[i] =0;
-			 else
-				 Result_ANR[i] = Result_Output1[i]-Result_Output2[i];
-		 }		
-		 */
-		 
-		 //arm_max_f32(Result_ANR, FFT_SIZE/2, &maxValue, &maxIndex);
-		 //printf("%d,%.1f\r\n", maxIndex,maxValue); 
-		 
-		/*
-				for(i = 0; i <FFT_SIZE/2; i++)
-			 {
-						printf("%.1f,", Result_Output[i]);					
-			 }		
+			  Result_ANR[i]=  fabs(Result_Output1[i]-Result_Output2[i]);			 
+		//		printf("%.1f,",Result_ANR[i]); 
+		 }
+ //   printf("\r\n"); 
+
+		 arm_max_f32(Result_ANR, FFT_SIZE/2, &maxValue_1, &maxIndex_1);				 
+		 Result_ANR[maxIndex_1] = 0.0;						 
+		 arm_max_f32(Result_ANR, FFT_SIZE/2, &maxValue_2, &maxIndex_2);
 		
-		  
-				//printf("\r\n");
-			 	printf("BLE4.0 Communication TEST");
-			 	printf("\r\n");
-		   */
-		 }		 	 	
+//    printf("Info.\r\n"); 
+
+		
+		if(maxValue_1 <2000)
+	 {
+			  maxValue_1 =0;
+		    Result_ANR[maxIndex_1] =0;
+		    printf("%d,%.1f, %d,%.1f  \r\n", 0,0.0, 0,0.0);
+					
+	 }
+	 else
+	{
+		  printf("%d,%.1f, /// ,%d,%.1f  \r\n", maxIndex_1*FsTime/2/(NPT/2)/2, maxValue_1, maxIndex_2*FsTime/2/(NPT/2)/2, maxValue_2); 
+			Evaluation_Array[count] =maxIndex_1*FsTime/2/(NPT/2)/2;
+		
+		  if(count > 20)
+			{
+				count =0;				  
+			}
+			count++;
+			
+	}			
+		
+		
+		
 		 
+   /* 
+		 for(i = 0; i <FFT_SIZE/2; i++)
+		 {	
+			 if(Result_Output1[i]-Result_Output2[i] <= 0)
+			  {
+				 	 Result_ANR[i] =0;
+			  } 
+			  else
+			  {
+		 			 Result_ANR[i]=  Result_Output1[i]-Result_Output2[i];
+	 		  }
+				printf("%.1f,", Result_ANR[i]); 
+  		}
+		 					
+				 arm_max_f32(Result_ANR, FFT_SIZE/2, &maxValue_1, &maxIndex_1);				 
+			   Result_ANR[maxIndex_1] = 0.0;				 
+		     arm_max_f32(Result_ANR, FFT_SIZE/2, &maxValue_2, &maxIndex_2);
+					 
+				
+      
+				 if(maxValue_1 <1000)
+				 {
+					  printf("%d,%.1f, %d,%.1f  \r\n", 0,0.0, 0,0.0); 
+				 }
+				 else
+				 {
+					  printf("%d,%.1f, %d,%.1f  \r\n", maxIndex_1*FsTime/2/(NPT/2), maxValue_1, maxIndex_2*maxIndex_1*FsTime/2/(NPT/2),maxValue_2); 
+				 }			
+	 */
+		 }		 
 }
 
 
@@ -552,11 +599,11 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Alternate = GPIO_AF5_SPI2;
   HAL_GPIO_Init(PDM_OUT_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : B1_Pin */
-  GPIO_InitStruct.Pin = B1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  /*Configure GPIO pin : PA0 */
+  GPIO_InitStruct.Pin = GPIO_PIN_0;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : I2S3_WS_Pin */
   GPIO_InitStruct.Pin = I2S3_WS_Pin;
@@ -638,6 +685,10 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_EVT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(MEMS_INT2_GPIO_Port, &GPIO_InitStruct);
+
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI0_IRQn, 0, 1);
+  HAL_NVIC_EnableIRQ(EXTI0_IRQn);
 
 }
 
