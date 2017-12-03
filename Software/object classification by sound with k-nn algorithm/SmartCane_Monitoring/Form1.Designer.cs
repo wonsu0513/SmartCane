@@ -136,6 +136,10 @@
             // 
             // chart1
             // 
+            chartArea1.AxisX.Title = "Frequency, Hz";
+            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.AxisY.Title = "Amplitude, dB";
+            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
@@ -143,6 +147,7 @@
             this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(0, 0);
             this.chart1.Name = "chart1";
+            this.chart1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             series1.BorderWidth = 5;
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;

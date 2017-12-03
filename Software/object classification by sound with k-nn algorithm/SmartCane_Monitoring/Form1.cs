@@ -32,7 +32,7 @@ namespace SmartCane_Monitoring
          
 
 
-            string input_1_path = @"C:\Users\wonsu\Documents\GitHub\MonitoringSensorData\soundMonitoring\SmartCane_Monitoring\SmartCane_Monitoring\wood.txt";
+            string input_1_path = @"C:\Users\wonsu\Documents\GitHub\MonitoringSensorData\soundMonitoring\object classification by sound with k-nn algorithm\SmartCane_Monitoring\wood.txt";
             string[] input_1_name = System.IO.File.ReadAllLines(input_1_path);
 
             for (int i = 0; i < input_1_name.Length; i++)
@@ -52,7 +52,7 @@ namespace SmartCane_Monitoring
 
             }
 
-            string input_2_path = @"C:\Users\wonsu\Documents\GitHub\MonitoringSensorData\soundMonitoring\SmartCane_Monitoring\SmartCane_Monitoring\paper.txt";
+            string input_2_path = @"C:\Users\wonsu\Documents\GitHub\MonitoringSensorData\soundMonitoring\object classification by sound with k-nn algorithm\SmartCane_Monitoring\paper.txt";
             string[] input_2_name = System.IO.File.ReadAllLines(input_2_path);
 
             for (int i = 0; i < input_2_name.Length; i++)
@@ -70,7 +70,7 @@ namespace SmartCane_Monitoring
             }
 
 
-            string input_3_path = @"C:\Users\wonsu\Documents\GitHub\MonitoringSensorData\soundMonitoring\SmartCane_Monitoring\SmartCane_Monitoring\plastic.txt";
+            string input_3_path = @"C:\Users\wonsu\Documents\GitHub\MonitoringSensorData\soundMonitoring\object classification by sound with k-nn algorithm\SmartCane_Monitoring\plastic.txt";
             string[] input_3_name = System.IO.File.ReadAllLines(input_3_path);
 
             for (int i = 0; i < input_3_name.Length; i++)
@@ -87,7 +87,7 @@ namespace SmartCane_Monitoring
 
             }
 
-            string input_4_path = @"C:\Users\wonsu\Documents\GitHub\MonitoringSensorData\soundMonitoring\SmartCane_Monitoring\SmartCane_Monitoring\metal.txt";
+            string input_4_path = @"C:\Users\wonsu\Documents\GitHub\MonitoringSensorData\soundMonitoring\object classification by sound with k-nn algorithm\SmartCane_Monitoring\metal.txt";
 
             string[] input_4_name = System.IO.File.ReadAllLines(input_4_path);
 

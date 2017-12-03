@@ -7,3 +7,12 @@ C:\Users\wonsu\Documents\GitHub\MonitoringSensorData\soundMonitoring\SmartCane_M
 C:\Users\wonsu\Documents\GitHub\MonitoringSensorData\soundMonitoring\SmartCane_Monitoring\SmartCane_Monitoring\obj\Debug\SmartCane_Monitoring.exe
 C:\Users\wonsu\Documents\GitHub\MonitoringSensorData\soundMonitoring\SmartCane_Monitoring\SmartCane_Monitoring\obj\Debug\SmartCane_Monitoring.pdb
 C:\Users\wonsu\Documents\GitHub\MonitoringSensorData\soundMonitoring\SmartCane_Monitoring\SmartCane_Monitoring\obj\Debug\SmartCane_Monitoring.Form1.resources
+C:\Users\wonsu\Documents\GitHub\MonitoringSensorData\soundMonitoring\object classification by sound with k-nn algorithm\SmartCane_Monitoring\bin\Debug\SmartCane_Monitoring.exe.config
+C:\Users\wonsu\Documents\GitHub\MonitoringSensorData\soundMonitoring\object classification by sound with k-nn algorithm\SmartCane_Monitoring\obj\Debug\SmartCane_Monitoring.exe
+C:\Users\wonsu\Documents\GitHub\MonitoringSensorData\soundMonitoring\object classification by sound with k-nn algorithm\SmartCane_Monitoring\obj\Debug\SmartCane_Monitoring.pdb
+C:\Users\wonsu\Documents\GitHub\MonitoringSensorData\soundMonitoring\object classification by sound with k-nn algorithm\SmartCane_Monitoring\bin\Debug\SmartCane_Monitoring.exe
+C:\Users\wonsu\Documents\GitHub\MonitoringSensorData\soundMonitoring\object classification by sound with k-nn algorithm\SmartCane_Monitoring\bin\Debug\SmartCane_Monitoring.pdb
+C:\Users\wonsu\Documents\GitHub\MonitoringSensorData\soundMonitoring\object classification by sound with k-nn algorithm\SmartCane_Monitoring\obj\Debug\SmartCane_Monitoring.csprojResolveAssemblyReference.cache
+C:\Users\wonsu\Documents\GitHub\MonitoringSensorData\soundMonitoring\object classification by sound with k-nn algorithm\SmartCane_Monitoring\obj\Debug\SmartCane_Monitoring.Form1.resources
+C:\Users\wonsu\Documents\GitHub\MonitoringSensorData\soundMonitoring\object classification by sound with k-nn algorithm\SmartCane_Monitoring\obj\Debug\SmartCane_Monitoring.Properties.Resources.resources
+C:\Users\wonsu\Documents\GitHub\MonitoringSensorData\soundMonitoring\object classification by sound with k-nn algorithm\SmartCane_Monitoring\obj\Debug\SmartCane_Monitoring.csproj.GenerateResource.Cache
